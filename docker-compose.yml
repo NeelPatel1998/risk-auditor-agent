@@ -1,0 +1,72 @@
+# Risk Auditor — Document + Chat + API gateway (microservices layout)
+# Usage: from repo root `risk-auditor/`
+#   docker compose up --build
+#
+# API key: set OPENROUTER_API_KEY in `backend/.env` and/or `.env` here (see env_file below), or export before `docker compose up`.
+# UI + API: open http://localhost:8080 after `docker compose up --build`
+# Local dev only: `cd frontend && npm run dev` (Vite proxy → monolith on :8000 or set proxy to :8080)
+
+services:
+  document:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        REQUIREMENTS_FILE: requirements-document.txt
+    command: ["uvicorn", "app.document_app:app", "--host", "0.0.0.0", "--port", "8001"]
+    env_file:
+      - path: .env
+        required: false
+      - path: backend/.env
+        required: false
+    ports:
+      - "8001:8001"
+    environment:
+      CHROMA_DIR: /data/chroma
+      UPLOAD_DIR: /data/uploads
+      # Same writable volume as chat — required for thread_store / document_suggestions SQLite
+      CHECKPOINT_DB: /data/checkpoints.db
+      INTERNAL_API_TOKEN: ${INTERNAL_API_TOKEN:-risk-auditor-dev-internal}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:8080}
+    volumes:
+      - risk_data:/data
+
+  chat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        REQUIREMENTS_FILE: requirements-chat.txt
+    command: ["uvicorn", "app.chat_app:app", "--host", "0.0.0.0", "--port", "8000"]
+    env_file:
+      - path: .env
+        required: false
+      - path: backend/.env
+        required: false
+    ports:
+      - "8000:8000"
+    environment:
+      RETRIEVAL_MODE: remote
+      DOCUMENT_SERVICE_URL: http://document:8001
+      INTERNAL_API_TOKEN: ${INTERNAL_API_TOKEN:-risk-auditor-dev-internal}
+      CHECKPOINT_DB: /data/checkpoints.db
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:8080}
+    volumes:
+      - risk_data:/data
+    depends_on:
+      - document
+
+  gateway:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ""
+    ports:
+      - "8080:80"
+    depends_on:
+      - document
+      - chat
+
+volumes:
+  risk_data:

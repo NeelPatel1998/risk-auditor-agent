@@ -1,0 +1,272 @@
+[
+  {
+    "id": "e23_01",
+    "doc_id": "eval__e23_2027",
+    "question": "What does E-23 Principle 3.3 require for model development standards?",
+    "expected_answer": "Institutions should have model development processes that set clear standards for performance and documentation.",
+    "expected_page": 16,
+    "expected_keywords": ["model development", "performance", "documentation", "standards"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "e23_02",
+    "doc_id": "eval__e23_2027",
+    "question": "What does Principle 3.4 require for model review?",
+    "expected_answer": "Institutions should have a process to independently assess conceptual soundness and performance of models.",
+    "expected_page": 17,
+    "expected_keywords": ["independent", "conceptual soundness", "performance", "review"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "e23_03",
+    "doc_id": "eval__e23_2027",
+    "question": "What is the purpose of Guideline E-23?",
+    "expected_answer": "Guideline E-23 sets out OSFI's expectations for the management of model risk at federally regulated financial institutions.",
+    "expected_page": 3,
+    "expected_keywords": ["model risk", "management", "expectations", "financial institutions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "e23_04",
+    "doc_id": "eval__e23_2027",
+    "question": "How does OSFI define a model in E-23?",
+    "expected_answer": "A model consists of an information input component, a processing component that identifies relationships between inputs, and a result component that presents outputs in a usable format.",
+    "expected_page": 3,
+    "expected_keywords": ["input", "processing", "component", "relationships", "outputs"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "e23_05",
+    "doc_id": "eval__e23_2027",
+    "question": "What is model risk according to E-23?",
+    "expected_answer": "Model risk involves the risk of adverse financial impact from decisions based on incorrect or misused model outputs and reports.",
+    "expected_page": 3,
+    "expected_keywords": ["adverse", "financial", "decisions", "model risk"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "e23_06",
+    "doc_id": "eval__e23_2027",
+    "question": "Who is responsible for model governance and oversight?",
+    "expected_answer": "Senior management is responsible for designing, implementing and overseeing the MRM framework, including establishing reporting structures and proper resourcing.",
+    "expected_page": 7,
+    "expected_keywords": ["senior management", "governance", "oversight", "framework"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "e23_07",
+    "doc_id": "eval__e23_2027",
+    "question": "What does Principle 2.1 say about model identification?",
+    "expected_answer": "Institutions should identify and track all models in use or recently decommissioned, including maintaining a model inventory.",
+    "expected_page": 10,
+    "expected_keywords": ["identify", "track", "models", "inventory"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "e23_08",
+    "doc_id": "eval__e23_2027",
+    "question": "What information should a model inventory contain?",
+    "expected_answer": "At a minimum, institutions should maintain information including model owner, reviewer, approver, dependencies, data sources, approved uses, and risk rating.",
+    "expected_page": 20,
+    "expected_keywords": ["inventory", "owner", "reviewer", "data sources", "risk rating"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "e23_09",
+    "doc_id": "eval__e23_2027",
+    "question": "How should institutions rate model risk?",
+    "expected_answer": "Institutions should establish a model risk rating approach that considers the model's impact on decision-making, financial exposure, and regulatory significance.",
+    "expected_page": 10,
+    "expected_keywords": ["risk rating", "materiality", "risk", "impact"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "e23_10",
+    "doc_id": "eval__e23_2027",
+    "question": "What does Principle 3.6 say about model monitoring?",
+    "expected_answer": "Institutions should have defined standards for model monitoring and model decommission, ensuring models remain fit for their intended purpose.",
+    "expected_page": 19,
+    "expected_keywords": ["monitoring", "standards", "decommission", "model monitoring"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "e23_11",
+    "doc_id": "eval__e23_2027",
+    "question": "When does Guideline E-23 take effect?",
+    "expected_answer": "Guideline E-23 takes effect on May 1, 2027.",
+    "expected_page": 1,
+    "expected_keywords": ["May", "2027", "effective"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "e23_12",
+    "doc_id": "eval__e23_2027",
+    "question": "What does E-23 say about AI and machine learning models?",
+    "expected_answer": "AI/ML models are subject to the same model risk management expectations. Institutions should pay particular attention to their explainability, data quality, and complexity.",
+    "expected_page": 13,
+    "expected_keywords": ["AI", "machine learning", "explainability", "complexity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "b15_01",
+    "doc_id": "eval__b15_climate",
+    "question": "What are the three expected outcomes of Guideline B-15?",
+    "expected_answer": "1. The FRFI understands and mitigates potential impacts of climate-related risks. 2. The FRFI has appropriate governance and risk management. 3. The FRFI provides climate-related financial disclosures.",
+    "expected_page": 3,
+    "expected_keywords": ["three", "outcomes", "climate-related", "governance", "disclosures"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "b15_02",
+    "doc_id": "eval__b15_climate",
+    "question": "Who has overall accountability for climate risk management?",
+    "expected_answer": "Senior Management has overall accountability for the FRFI's climate risk management.",
+    "expected_page": 5,
+    "expected_keywords": ["Senior Management", "accountability", "climate risk"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "b15_03",
+    "doc_id": "eval__b15_climate",
+    "question": "What is climate scenario analysis according to B-15?",
+    "expected_answer": "Climate scenario analysis uses a hypothetical future state of the world to assess the impact of climate-related risks on a FRFI's operations.",
+    "expected_page": 6,
+    "expected_keywords": ["scenario analysis", "hypothetical", "future state", "climate-related risks"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "b15_04",
+    "doc_id": "eval__b15_climate",
+    "question": "What types of financial risks can climate-related risks drive?",
+    "expected_answer": "Climate-related risks can drive credit, market, insurance, and liquidity risks as well as operational and strategic risks.",
+    "expected_page": 3,
+    "expected_keywords": ["credit", "market", "insurance", "liquidity"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "b15_05",
+    "doc_id": "eval__b15_climate",
+    "question": "What does B-15 say about incorporating climate risks into ICAAP?",
+    "expected_answer": "The FRFI should incorporate climate-related risks into its Internal Capital Adequacy Assessment Process (ICAAP) or Own Risk and Solvency Assessment (ORSA).",
+    "expected_page": 8,
+    "expected_keywords": ["ICAAP", "ORSA", "capital", "climate-related"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "b15_06",
+    "doc_id": "eval__b15_climate",
+    "question": "What does B-15 require for physical risk identification?",
+    "expected_answer": "The FRFI should have processes to identify and measure the current and potential future impact of climate-related physical risks on its portfolio of exposures.",
+    "expected_page": 6,
+    "expected_keywords": ["physical risk", "identify", "measure", "portfolio"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "b15_07",
+    "doc_id": "eval__b15_climate",
+    "question": "What GHG emissions scopes must FRFIs disclose?",
+    "expected_answer": "FRFIs must disclose Scope 1 and location-based Scope 2 absolute gross GHG emissions, and separately disclose Scope 3 absolute gross GHG emissions.",
+    "expected_page": 30,
+    "expected_keywords": ["Scope 1", "Scope 2", "Scope 3", "GHG emissions"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "b15_08",
+    "doc_id": "eval__b15_climate",
+    "question": "What does B-15 say about stress testing for climate risks?",
+    "expected_answer": "The FRFI should use climate scenario analysis and stress testing to assess potential impacts on its operations and financial position.",
+    "expected_page": 6,
+    "expected_keywords": ["stress test", "climate", "scenario", "impact"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "b15_09",
+    "doc_id": "eval__b15_climate",
+    "question": "What transition risks does B-15 identify?",
+    "expected_answer": "Transition risks include policy changes, technology shifts, and changing market dynamics as the economy moves toward a lower-carbon future.",
+    "expected_page": 3,
+    "expected_keywords": ["transition risk", "policy", "technology", "lower-carbon"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "wb_01",
+    "doc_id": "eval__worldbank_basel",
+    "question": "How many Core Principles are in the 2024 revised Basel framework?",
+    "expected_answer": "The 2024 update maintains the total at 29 Core Principles, though the number of essential criteria has increased.",
+    "expected_page": 13,
+    "expected_keywords": ["29", "Core Principles", "essential criteria"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "wb_02",
+    "doc_id": "eval__worldbank_basel",
+    "question": "What is the role of FSAP evaluations in the Basel framework?",
+    "expected_answer": "FSAP evaluations assess a country's compliance with Basel Core Principles and helped shape the 2024 revision based on implementation experience.",
+    "expected_page": 10,
+    "expected_keywords": ["FSAP", "evaluations", "compliance", "implementation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "wb_03",
+    "doc_id": "eval__worldbank_basel",
+    "question": "How does the 2024 Basel revision address proportionality?",
+    "expected_answer": "The revision acknowledges that standards should be applied proportionally, reflecting differences in size, complexity, and risk profile across jurisdictions.",
+    "expected_page": 13,
+    "expected_keywords": ["proportionality", "size", "complexity", "risk profile"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "wb_04",
+    "doc_id": "eval__worldbank_basel",
+    "question": "What does the Basel revision say about operational resilience?",
+    "expected_answer": "The scope of Core Principle 25 was broadened to fully include operational resilience alongside operational risk, requiring banks to maintain critical operations during disruptions.",
+    "expected_page": 19,
+    "expected_keywords": ["operational resilience", "CP25", "critical operations", "disruptions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "wb_05",
+    "doc_id": "eval__worldbank_basel",
+    "question": "How does the 2024 Basel revision address cybersecurity?",
+    "expected_answer": "The revision recognizes cybersecurity as a critical risk area requiring effective supervisory responses regardless of institution size or location.",
+    "expected_page": 19,
+    "expected_keywords": ["cybersecurity", "risk", "supervisory", "technology"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "wb_06",
+    "doc_id": "eval__worldbank_basel",
+    "question": "What does the Basel revision say about climate-related risks?",
+    "expected_answer": "The revised framework requires banks to strengthen risk reporting to include climate-related risks, reflecting the growing importance of environmental factors in banking supervision.",
+    "expected_page": 19,
+    "expected_keywords": ["climate-related", "risk reporting", "environmental"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "wb_07",
+    "doc_id": "eval__worldbank_basel",
+    "question": "What corporate governance changes were introduced in the Basel revision?",
+    "expected_answer": "Greater emphasis was placed on risk culture, governance frameworks (CP14), risk appetite frameworks, and ensuring board members possess appropriate skills and competencies.",
+    "expected_page": 19,
+    "expected_keywords": ["governance", "CP14", "risk culture", "board", "skills"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "wb_08",
+    "doc_id": "eval__worldbank_basel",
+    "question": "What challenges do emerging markets face with Basel implementation?",
+    "expected_answer": "Emerging markets face challenges including limited supervisory capacity, technical expertise gaps, resource constraints, and difficulties in applying complex frameworks to diverse banking sectors.",
+    "expected_page": 10,
+    "expected_keywords": ["emerging market", "capacity", "expertise", "resource", "challenges"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "wb_09",
+    "doc_id": "eval__worldbank_basel",
+    "question": "Why is supervisory independence important in the Basel framework?",
+    "expected_answer": "Legal protection for supervisors allows supervisory actions to be taken without fear of personal liability, enabling effective oversight and enforcement.",
+    "expected_page": 36,
+    "expected_keywords": ["supervisory independence", "legal protection", "oversight"],
+    "difficulty": "hard"
+  }
+]

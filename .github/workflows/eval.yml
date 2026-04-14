@@ -1,0 +1,25 @@
+# Agent / RAG evaluation — manual trigger only.
+# Automatic runs happen via cd.yml (after CI passes on a push to main).
+# Use this when you want to run the eval ad-hoc without pushing code.
+# Secret required: OPENROUTER_API_KEY
+
+name: Agent evaluation (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Number of golden questions to run (default 10, max 30)
+        required: false
+        default: "10"
+
+concurrency:
+  group: agent-eval-manual-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  eval:
+    uses: ./.github/workflows/agent-eval-callable.yml
+    secrets: inherit
+    with:
+      limit: ${{ github.event.inputs.limit || '10' }}

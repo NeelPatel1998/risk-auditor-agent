@@ -1,0 +1,95 @@
+# Reusable agent / RAG evaluation (OpenRouter + PDFs). Invoked from eval.yml and cd.yml.
+on:
+  workflow_call:
+    inputs:
+      limit:
+        description: Max golden questions
+        type: string
+        default: "10"
+    secrets:
+      OPENROUTER_API_KEY:
+        description: Required for live LLM + embedding calls during eval
+        required: false
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: backend
+    concurrency:
+      group: agent-eval-callable-${{ github.repository }}-${{ github.run_id }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preflight (API key + PDF directory)
+        id: pre
+        working-directory: backend
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          python3 << 'PY'
+          import os
+          from pathlib import Path
+
+          key = (os.environ.get("OPENROUTER_API_KEY") or "").strip()
+          has_key = "1" if key else "0"
+
+          backend = Path(".").resolve()
+          risk = backend.parent
+          d = risk / "sample_input_data"
+
+          pdfs = list(d.glob("*.pdf")) if d.is_dir() else []
+          has_pdfs = "1" if pdfs else "0"
+
+          out = Path(os.environ["GITHUB_OUTPUT"])
+          with open(out, "a", encoding="utf-8") as f:
+              f.write(f"has_key={has_key}\n")
+              f.write(f"has_pdfs={has_pdfs}\n")
+              f.write(f"data_path={d}\n")
+          PY
+
+      - name: Notice — missing OpenRouter secret
+        if: steps.pre.outputs.has_key != '1'
+        run: |
+          echo "::notice::Set repository secret OPENROUTER_API_KEY to enable agent evaluation on GitHub."
+
+      - name: Notice — missing evaluation PDFs
+        if: steps.pre.outputs.has_key == '1' && steps.pre.outputs.has_pdfs != '1'
+        run: |
+          echo "::notice::No PDFs found under ${{ steps.pre.outputs.data_path }}."
+
+      - uses: actions/setup-python@v5
+        if: steps.pre.outputs.has_key == '1' && steps.pre.outputs.has_pdfs == '1'
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements-document.txt
+
+      - name: Install dependencies
+        if: steps.pre.outputs.has_key == '1' && steps.pre.outputs.has_pdfs == '1'
+        run: pip install -r requirements-document.txt
+
+      - name: Run evaluation harness
+        if: steps.pre.outputs.has_key == '1' && steps.pre.outputs.has_pdfs == '1'
+        env:
+          PYTHONPATH: .
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CHROMA_DIR: ${{ runner.temp }}/eval-chroma
+          UPLOAD_DIR: ${{ runner.temp }}/eval-uploads
+          RETRIEVAL_MODE: local
+          RBC_INPUT_DATA_DIR: ${{ steps.pre.outputs.data_path }}
+        run: python -m eval.run_eval --limit "${{ inputs.limit }}"
+
+      - name: Upload eval artifacts
+        if: success() && steps.pre.outputs.has_key == '1' && steps.pre.outputs.has_pdfs == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results-${{ github.run_id }}
+          path: |
+            backend/eval/results_*.json
+            backend/eval/summary_*.txt
+          if-no-files-found: warn

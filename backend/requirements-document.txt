@@ -1,0 +1,18 @@
+# Document / ingestion image — vectors, PDFs, hybrid retrieval, rerank, suggested questions.
+# No LangGraph / chat agent stack (smaller than a combined monolith install).
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+python-dotenv==1.1.0
+httpx==0.28.1
+aiosqlite==0.20.0
+pydantic==2.10.5
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.5.1+cpu ; platform_system=="Linux"
+
+chromadb>=1.5.7,<2
+pymupdf==1.25.3
+sentence-transformers>=3.0.0
+rank_bm25>=0.2.2

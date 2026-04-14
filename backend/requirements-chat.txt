@@ -1,0 +1,13 @@
+# Chat image — LangGraph + checkpoints + remote retrieval (no local vector / PDF stack).
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+python-dotenv==1.1.0
+langchain-core==0.3.40
+langgraph==0.2.74
+langgraph-checkpoint==2.0.10
+langgraph-checkpoint-sqlite==2.0.3
+httpx==0.28.1
+aiosqlite==0.20.0
+pydantic==2.10.5
