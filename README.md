@@ -155,15 +155,21 @@ The system was designed with a banking-sector threat model in mind:
 
 ## What I Would Do Differently With 30 Days
 
-The 3-day build proves the concept works. The 30-day version makes it trustworthy enough to put in front of risk officers at a regulated institution. Six changes would have the largest compounding impact:
+The 3-day build proves the concept works. The 30-day version makes it trustworthy enough to put in front of risk officers at a regulated institution. Seven changes would have the largest compounding impact:
 
 ### 1. LLM Observability & Compliance Audit Trail
 
 Today the system writes application logs. That is not enough for a banking deployment. Every query should emit a **structured trace** — retrieved chunks with similarity scores, the full prompt, the raw model output, latency split by stage (retrieval / rerank / LLM / serialisation), and any user feedback signal. An open-source monitoring library built on OpenTelemetry would give compliance and ML-ops teams a searchable audit trail of every answer the system has ever produced, a live dashboard to catch retrieval failures before users notice them, and an automated faithfulness scorer (LLM-as-judge) that flags answers not supported by the cited chunks. Without this, running the system in production is flying blind.
 
-### 2. Multi-hop Agentic Retrieval
+### 2. Multi-Agent LangGraph Architecture
 
-The current RAG pipeline does one retrieval pass per question. Complex regulatory questions — *"How does E-23's model validation standard compare to what B-15 requires for climate models?"* — require the agent to decompose the question into sub-queries, retrieve against each, verify consistency across answers, and synthesise a single grounded response. With 30 days this would be built as a LangGraph tool-calling loop: the agent issues targeted sub-queries, checks whether the partial answers conflict, and iterates before producing a final response. This is the single biggest driver of answer quality for the hard questions a real risk officer would ask.
+The current LangGraph graph has two nodes: `retrieve` and `generate` — a single-agent pattern. The right production architecture is a **multi-agent graph** where each node has a distinct, auditable role:
+
+- **Auditor agent** — the current generator, grounded strictly in retrieved chunks
+- **Fact-check agent** — reviews the draft answer against the retrieved context, flags any claim not supported by a cited chunk, and either approves or sends the answer back for revision
+- **Policy agent** — checks the final answer for PII leakage, out-of-scope content, or financial advice before it reaches the user
+
+Alongside these specialised agents, the retrieval step would become **multi-hop**: complex cross-document questions (*“How does E-23’s model validation standard compare to what B-15 requires for climate models?”*) require the auditor agent to decompose the question into sub-queries, retrieve against each, and synthesise a single grounded response. LangGraph’s `add_conditional_edges` makes the fact-check → revise loop straightforward to add without rewriting the pipeline — each role is just a new node. This is the single biggest driver of both answer quality and institutional trust.
 
 ### 3. Enterprise Auth, Data Governance & PII Protection
 
@@ -192,7 +198,7 @@ Docker Compose on a single host is the right way to ship a prototype. A bank run
 | Priority | What changes | Why it matters most |
 |---|---|---|
 | **1 — LLM observability** | Structured traces on every request | Compliance audit trail; catch retrieval failures before users do |
-| **2 — Multi-hop retrieval** | Agent decomposes and iterates queries | Biggest quality jump for hard cross-document questions |
+| **2 — Multi-agent LangGraph** | Auditor + fact-check + policy nodes; multi-hop retrieval | Answer quality + verifiability for regulated use |
 | **3 — Auth + governance + PII** | OAuth/OIDC, redaction, encryption | Minimum bar for a regulated institution |
 | **4 — Document intelligence** | Layout-aware parsing, OCR, table extraction | Accurate answers on quantitative and table-heavy content |
 | **5 — Feedback loop** | Thumbs up/down → reranker + eval improvement | System that gets better with use instead of staying static |
